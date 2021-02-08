@@ -1,0 +1,56 @@
+<!-- HEADER -->
+<div class="col-10 mx-auto text-center bg-primary shadow">
+    <h1>Choice 2021</h1>
+</div>
+<div class="m-5"></div>
+<div class="col-md-9 col-sm-12 mx-auto">
+    <!-- COMPANY SELECTION -->
+    <div class="mb-4">
+        <div class="row col-md-9 col-sm-12 mx-auto mt-1 text-center">
+            <h6 class="text-center mt-1 col-md-5 col-sm-6 fw-bold">empresa:</h6>
+            <app-select-tag class="col-md-6 col-sm-12" [objList]="companies" (selected)="changeSelectedCompany($event)">
+            </app-select-tag>
+        </div>
+    </div>
+
+    <!-- WORKER SELECTION -->
+    <div class="mb-4">
+        <div class="row col-md-9 col-sm-12 mx-auto mt-1 text-center">
+            <h6 class="text-center mt-1 col-md-5 col-sm-6 fw-bold">arquiteta(o):</h6>
+            <app-select-tag class="col-md-6 col-sm-12" [objList]="workers" (selected)="changeSelectedWorker($event)">
+            </app-select-tag>
+        </div>
+    </div>
+
+    <!-- OPTIONS SECTION -->
+    <div class="mb-4">
+        <div class="text-center">
+            <h6 class="col-12 fw-bold mb-2">selecione os cômodos: </h6>
+        </div>
+        <app-option-buttons [optionsList]="rooms" (selected)="handleSelectedRooms($event)"></app-option-buttons>
+    </div>
+
+    <!-- INPUT USER EMAIL AND NAME -->
+    <div>
+        <div class="row col-md-9 col-sm-12 mb-3 mx-auto mt-1 text-center">
+            <h6 class="text-center mt-1 col-md-5 col-sm-6 fw-bold">seu nome:</h6>
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="form-control  input-st text-center shadow-primary border-st ml-5" [(ngModel)]="nameCustomer" placeholder=""> 
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row col-md-9 col-sm-12 mb-3 mx-auto mt-1 text-center">
+            <h6 class="text-center mt-1 col-md-5 col-sm-6 fw-bold">seu email:</h6>
+            <div class="col-md-6 col-sm-12">
+                <!-- criar máscara para email -->
+                <input type="text" class="form-control  input-st text-center shadow-primary border-st ml-5" [(ngModel)]="emailCustomer" placeholder=""> 
+            </div>
+        </div>
+    </div>
+
+    <!-- TODO: disable button até que tudo esteja selecionado, futuramente só mostrar ele quando tiver selecionado tudo  -->
+    <div class="text-center">
+        <button class="btn mx-auto btn-option  m-2 shadow-primary border-st primary-bg rounded text-light p-3" (click)="beginButton()" >iniciar</button>
+    </div>
+</div>  

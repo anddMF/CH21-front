@@ -1,0 +1,20 @@
+<div *ngIf="showHome">
+    <app-customer-home (initialReport)="handleReportOutput($event)" (finalRooms)="handleRoomsOutput($event)"></app-customer-home>
+</div>
+
+<div *ngIf="showChoices">
+    <div class="col-12">
+        <app-image-gallery [images]="filteredImageList" (done)="handleImageOutput($event)"></app-image-gallery>
+
+        <div class="col-12 text-center">
+            <button class="btn mx-auto btn-option  m-2 shadow-primary border-st primary-bg rounded text-light p-3" (click)="imageOrquestration()" >avançar</button>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="showEnd">
+    <div class="col-12 text-center m-5 p-5">
+        <h1 class="fim-text">suas respostas foram enviadas</h1>
+    </div>
+</div>

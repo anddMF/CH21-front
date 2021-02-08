@@ -1,0 +1,9 @@
+<div class="row col-10 mx-auto">
+    <div *ngFor="let room of roomList" class="col-md-4 col-sm-4 col-xs-4 ml-0 mr-2 mb-2 text-center mx-auto">
+        <button  [ngClass]="{'btn-option-clicked': room.clicked}"
+            class="btn mx-auto btn-option col-12 shadow-primary border-st primary-bg text-light p-3"
+            (click)="checkOption(room.id)">
+            {{ room.name }}
+        </button>
+    </div>
+</div>

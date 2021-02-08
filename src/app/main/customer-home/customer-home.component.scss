@@ -1,0 +1,29 @@
+.custom-shape-divider-top-1610409581 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1610409581 svg {
+    position: relative;
+    display: block;
+    width: calc(140% + 1.3px);
+    height: 211px;
+}
+
+.custom-shape-divider-top-1610409581 .shape-fill {
+    fill: #2036FF;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.input-st {
+    border: none;
+    line-height: 1.2;
+}

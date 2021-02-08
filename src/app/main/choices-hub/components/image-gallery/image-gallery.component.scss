@@ -1,0 +1,42 @@
+.grid-container {
+    columns: 2 200px;
+    column-gap: 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+    div {
+        // width: 150px;
+        margin: 0 1.5rem 1.5rem 0;
+        display: inline-block;
+        width: 100%;
+        // border: solid 2px black;
+        // padding: 5px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.282);
+        border-radius: 10px;
+        transition: all 0.25s ease-in-out;
+        &:hover img {
+            // border-color: #2036FF;
+            // border: solid 2px #2036FF;
+            // filter: grayscale(0);
+        }
+        &:hover {
+            // border-color: #ffffff;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+            // transition: all 0.25s ease-in-out;
+            // border: solid 2px black;
+        }
+        p {
+            margin: 5px 0;
+            padding: 0;
+            text-align: center;
+            font-style: italic;
+        }
+    }
+}
+
+.grid-item-true {
+    border-color: #2036FF;
+    border: solid 5px #2036FF;
+}

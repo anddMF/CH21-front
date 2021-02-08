@@ -1,0 +1,7 @@
+<select class="text-center shadow-primary border-st select-st pl-5" [value]="selectedId" (change)="changeSelectedCompany($event)">
+    <option class="bg-light" *ngIf="selectedId === 0" value="0">selecione</option>
+    <option class="" *ngFor="let obj of listModel" value={{obj.id}}>
+        {{ obj.name }}
+    </option>
+</select>
+
