@@ -27,3 +27,22 @@
     border: none;
     line-height: 1.2;
 }
+
+.top-ground { 
+    padding-top: 10% !important;
+    z-index: 1;
+    background-image: url(./../../../assets/images/wave2.svg);
+    background-repeat: no-repeat;
+    // padding-right: calc(1.5em + 0.75rem);
+    background-position: center right 100%;
+    // background-size: 100% 100%;
+    background-size:cover;
+    display: flex;
+    position: absolute;
+    height: 30%;
+}
+
+.user-form {
+    position: relative;
+    z-index: 999 !important;
+}
