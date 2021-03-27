@@ -1,3 +1,17 @@
 .fim-text {
     color: #2036FF;
 }
+
+.top-ground { 
+    padding-top: 10% !important;
+    z-index: 1;
+    background-image: url(./../../../assets/images/wave2.svg);
+    background-repeat: no-repeat;
+    // padding-right: calc(1.5em + 0.75rem);
+    background-position: center right 100%;
+    // background-size: 100% 100%;
+    background-size:cover;
+    display: flex;
+    position: absolute;
+    height: 30%;
+}

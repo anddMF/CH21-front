@@ -1,3 +1,5 @@
+<!-- <div class="col-12 top-ground mb-5 p-5">
+</div> -->
 <div *ngIf="showHome">
     <app-customer-home (initialReport)="handleReportOutput($event)" (finalRooms)="handleRoomsOutput($event)"></app-customer-home>
 </div>
@@ -14,7 +16,7 @@
 </div>
 
 <div *ngIf="showEnd">
-    <div class="col-12 text-center m-5 p-5">
+    <div class="col-12 text-center mt-5 mb-5 p-5">
         <h1 class="fim-text">suas respostas foram enviadas</h1>
     </div>
 </div>

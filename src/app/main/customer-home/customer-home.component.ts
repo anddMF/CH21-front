@@ -29,7 +29,7 @@ export class CustomerHomeComponent implements OnInit {
   public nameCustomer = '';
   public emailCustomer = '';
 
-  constructor(private customerSvc: CustomerService, private router: Router) { }
+  constructor(private customerSvc: CustomerService) { }
 
   ngOnInit(): void {
     this.selectedCo.id = 0;
@@ -77,12 +77,11 @@ export class CustomerHomeComponent implements OnInit {
     })
   }
 
-  // Montar objeto report para o output
-  // fazer post do cliente, pegar id dele e colocar no objeto report
   public beginButton() {
     this.customerObj.email = this.emailCustomer;
     this.customerObj.name = this.nameCustomer;
     this.customerObj.id_user_admin = this.selectedWorker.id;
+
     this.customerSvc.postCustomer(this.customerObj).subscribe(objList => {
       console.log(objList);
       if (objList) {

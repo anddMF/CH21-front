@@ -46,6 +46,7 @@ export class ChoicesHubComponent implements OnInit {
   }
 
   public handleRoomsOutput(rooms: RoomType[]): void {
+    console.log(rooms)
     this.roomList = rooms;
     this.imageOrquestration();
   }
@@ -64,18 +65,20 @@ export class ChoicesHubComponent implements OnInit {
     this.addImageToReport();
     // roomlist vai vim com clicked true, posso passar para false
     const filteredRooms = this.roomList.filter(obj => obj.clicked === true);
+    console.log(filteredRooms)
 
     if (filteredRooms.length > 0) {
       // nova lista de imagens a serem mostradas
       const room = filteredRooms[0].id;
       this.filteredImageList = this.imageList.filter(obj => obj.id_room_type === room);
-
+      console.log(this.filteredImageList)
       // altera o clicked no roomList pois ele ta sendo usado para identificar qual room
       // será mostrado em seguida nas imagens
       const index = this.roomList.findIndex(obj => obj.id === filteredRooms[0].id);
       this.roomList[index].clicked = false;
     } else {
       this.finishReport;
+      console.log(this.reportObj)
       this.showChoices = false;
       this.showEnd = true;
     }
@@ -87,6 +90,7 @@ export class ChoicesHubComponent implements OnInit {
         console.log(res)
       }
     })
+    // console.log(this.reportObj)
   }
 
 }
