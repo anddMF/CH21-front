@@ -1,5 +1,8 @@
 <!-- <div class="col-12 top-ground mb-5 p-5">
 </div> -->
+<div class="col-12 mb-4" *ngIf="showChoices">
+    <h3 class="fw-bold text-primary-1 ml-5 p-3">choices21</h3>
+</div>
 <div *ngIf="showHome">
     <app-customer-home (initialReport)="handleReportOutput($event)" (finalRooms)="handleRoomsOutput($event)"></app-customer-home>
 </div>
