@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiRootUrl: 'https://localhost:44301'
+    apiRootUrl: process.env.API_ROOT
 };

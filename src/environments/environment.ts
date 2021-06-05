@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiRootUrl: 'http://localhost:32750'
+  apiRootUrl: process.env.API_ROOT
 };
 
 /*
