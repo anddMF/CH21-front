@@ -3,10 +3,12 @@
 <div class="col-12 mb-4" *ngIf="showChoices">
     <h3 class="fw-bold text-primary-1 ml-5 p-3">choices21</h3>
 </div>
+<!-- Mostra a tela onde user passa seus dados e escolhas para as imagens -->
 <div *ngIf="showHome">
     <app-customer-home (initialReport)="handleReportOutput($event)" (finalRooms)="handleRoomsOutput($event)"></app-customer-home>
 </div>
 
+<!-- Mostra a gama de imagens para escolha do user -->
 <div *ngIf="showChoices">
     <div class="col-12">
         <app-image-gallery [images]="filteredImageList" (done)="handleImageOutput($event)"></app-image-gallery>
@@ -15,9 +17,9 @@
             <button class="btn mx-auto btn-option  m-2 shadow-primary border-st primary-bg rounded text-light p-3" (click)="imageOrquestration()" >avançar</button>
         </div>
     </div>
-
 </div>
 
+<!-- Mostra a tela final após escolhas -->
 <div *ngIf="showEnd">
     <div class="col-12 text-center mt-5 mb-5 p-5">
         <h1 class="fim-text">suas respostas foram enviadas</h1>

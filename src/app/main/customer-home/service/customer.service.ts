@@ -27,7 +27,7 @@ export class CustomerService {
       tap(_ => console.log('GET company')),
       catchError(this.handleError<any>('getCompany'))
     )
-}
+  }
 
   public getWorker(companyId: number): Observable<WorkerUser[]> {
     return this.http.get<WorkerUser[]>(`${environment.apiRootUrl}/api/User?id_company=${companyId}`).pipe(

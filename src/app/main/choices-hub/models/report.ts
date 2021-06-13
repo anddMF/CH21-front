@@ -4,6 +4,7 @@ export class Report {
     id_user_admin: number = 0;
     id_user_worker: number = 0;
     id_company: number = 0;
+    dt_register: Date = new Date();
     deal: boolean = false;
     r_read: boolean = false;
     title: string = '';
@@ -25,4 +26,11 @@ export class Report {
     r7_pic2: number = 0;
     r8_pic1: number = 0;
     r8_pic2: number = 0;
+
+    // User data
+    name: string = '';
+    dt_birth: Date = new Date();
+    children: number = 0;
+    kid: boolean = false;
+    email: string = '';
 }

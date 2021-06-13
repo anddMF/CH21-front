@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;1,600;1,700&display=swap');
 
 body {
-    // background-color: #f6f6f6;
-    background: linear-gradient(-45deg, #abc9fd, #ccfdf2, #abc9fd, #ccfdf2);
+    background-color: #f6f6f6;
+    // background: linear-gradient(-45deg, #abc9fd, #ccfdf2, #abc9fd, #ccfdf2);
 	background-size: 800% 800%;
 	animation: gradient 20s ease infinite;
     font-family: 'Montserrat', sans-serif;
@@ -22,11 +22,11 @@ body {
 }
 
 .primary-bg {
-    background-color: #2036ff !important;
+    background-color: #25BAE9 !important;
 }
 
 .text-primary-1 { 
-    color: #2036ff !important;
+    color: #25BAE9 !important;
 }
 
 .shadow-primary {

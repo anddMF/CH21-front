@@ -10,11 +10,46 @@ import { CustomerService } from '../customer-home/service/customer.service';
   styleUrls: ['./choices-hub.component.scss']
 })
 export class ChoicesHubComponent implements OnInit {
-  public showHome = true;
+  public showHome = false;
   public showChoices = false;
-  public showEnd = false;
+  public showEnd = true;
 
   public reportObj = new Report();
+  public reportResponse: Report =
+    {
+      "id": 4,
+      "id_customer": 2,
+      "id_user_admin": 0,
+      "id_user_worker": 0,
+      "id_company": 0,
+      "dt_register": new Date("2021-04-02T17:05:42"),
+      "deal": true,
+      "r_read": false,
+      "title": "teste te",
+      "r_description": "testestestes",
+      "r_key": "",
+      "r1_pic1": 1,
+      "r1_pic2": 2,
+      "r2_pic1": 0,
+      "r2_pic2": 0,
+      "r3_pic1": 0,
+      "r3_pic2": 0,
+      "r4_pic1": 0,
+      "r4_pic2": 0,
+      "r5_pic1": 0,
+      "r5_pic2": 0,
+      "r6_pic1": 0,
+      "r6_pic2": 0,
+      "r7_pic1": 0,
+      "r7_pic2": 0,
+      "r8_pic1": 0,
+      "r8_pic2": 0,
+      "name": "Testando",
+      "dt_birth": new Date("1998-08-04T00:00:00"),
+      "children": 0,
+      "kid": false,
+      "email": "teste@email.com"
+    }
   public imageObj = new ImageFile();
 
   public roomList: RoomType[] = [];
@@ -77,18 +112,19 @@ export class ChoicesHubComponent implements OnInit {
       const index = this.roomList.findIndex(obj => obj.id === filteredRooms[0].id);
       this.roomList[index].clicked = false;
     } else {
-      this.finishReport;
       console.log(this.reportObj)
-      this.showChoices = false;
-      this.showEnd = true;
+      this.finishReport;
     }
   }
 
   public finishReport() {
     this.customerSvc.postReport(this.reportObj).subscribe(res => {
       if(res) {
-        console.log(res)
-      }
+        console.log(res); 
+        this.showChoices = false;
+        this.showEnd = true;
+        return;
+      } 
     })
     // console.log(this.reportObj)
   }
