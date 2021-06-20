@@ -11,8 +11,8 @@ import { CustomerService } from '../customer-home/service/customer.service';
 })
 export class ChoicesHubComponent implements OnInit {
   public showHome = false;
-  public showChoices = false;
-  public showEnd = true;
+  public showChoices = true;
+  public showEnd = false;
 
   public reportObj = new Report();
   public reportResponse: Report =
@@ -28,7 +28,7 @@ export class ChoicesHubComponent implements OnInit {
       "title": "teste te",
       "r_description": "testestestes",
       "r_key": "",
-      "r1_pic1": 1,
+      "r1_pic1": '1',
       "r1_pic2": 2,
       "r2_pic1": 0,
       "r2_pic2": 0,

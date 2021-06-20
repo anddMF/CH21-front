@@ -53,6 +53,22 @@ export class CustomerService {
     )
   }
 
+  public getImagesById(listIds: string[]): Observable<ImageFile[]> {
+    let param = "";
+    for (let index = 0; index < listIds.length; index++) {
+      if(index === 0)
+        param = "list="+listIds[index];
+      else
+        param += "&list="+listIds[index];
+    }
+    console.log(param)
+    return this.http.get<ImageFile[]>(`${environment.apiRootUrl}/api/Image/id?${param}`).pipe(
+      retry(2),
+      tap(_ => console.log('GET images')),
+      catchError(this.handleError<any>('getImages'))
+    )
+  }
+
   public postCustomer(customer: Customer): Observable<Customer[]> {
     return this.http.post<Customer[]>(`${environment.apiRootUrl}/api/Customer`, customer, this.httpOptions)
   }

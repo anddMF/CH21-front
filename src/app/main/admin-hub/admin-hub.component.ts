@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHubComponent implements OnInit {
   reportList: Report[] = [];
+  selectedReport: Report = new Report();
+
+  showSingleReport = false;
 
   constructor(private adminService: AdminService) { }
 
@@ -16,11 +19,20 @@ export class AdminHubComponent implements OnInit {
     // Apenas para teste
     this.adminService.getReports(1, 2).subscribe(res => {
       console.log('res fora: ', res)
-      if(res && res.length > 0) {
+      if (res && res.length > 0) {
         console.log(res)
         this.reportList = res;
       }
     })
+  }
+
+  public selectReport(selected: Report) {
+    console.log(selected)
+    if (selected) {
+      console.log('entrou selected')
+      this.selectedReport = selected;
+      this.showSingleReport = true;
+    }
   }
 
 }

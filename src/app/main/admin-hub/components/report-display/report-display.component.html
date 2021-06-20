@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-1 bg-primry" (click)="exitPage()">
+            <i class="fas fa-arrow-left mt-2"></i>
+        </div>
+        <div class="col-10 bg-scondary">
+            <h3>{{ report.name }}, {{calculateAge(report.dt_birth)}} anos </h3>
+        </div>
+    </div>
+    <div class="col-12 mt-5">
+        <app-image-gallery [images]="imageList"></app-image-gallery>
+    </div>
+</div>

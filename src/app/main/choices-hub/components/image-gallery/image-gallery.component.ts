@@ -1,6 +1,8 @@
 import { ImageView } from './models/image-view';
 import { ImageFile } from './models/image-file';
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CustomerService } from 'src/app/main/customer-home/service/customer.service';
+import { RoomType } from 'src/app/main/customer-home/models/room-type';
 
 @Component({
   selector: 'app-image-gallery',
@@ -9,13 +11,17 @@ import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChange
 })
 export class ImageGalleryComponent implements OnInit, OnChanges {
   @Input() images: ImageFile[] = [];
+  @Input() showDescriptions: boolean = false;
   @Output() done = new EventEmitter();
+
   public imglist: ImageFile[] = [];
   public selectedImage = new ImageFile();
 
   public filteredList: ImageView[] = [];
 
-  constructor() { }
+  public rooms: RoomType[] = [];
+
+  constructor(private customerSvc: CustomerService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(this.images && changes.images) {
@@ -45,5 +51,17 @@ export class ImageGalleryComponent implements OnInit, OnChanges {
     this.images.forEach(obj => {
       this.filteredList.push({image: obj, used : false})
     })
+  }
+
+  public getImageDescriptions(): void {
+
+  }
+
+  public getRooms(): void {
+    this.customerSvc.getRoom().subscribe(res => {
+      if (res) {
+        this.rooms = res;
+      }
+    });
   }
 }

@@ -3,9 +3,9 @@
         <app-navbar></app-navbar>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-5" *ngIf="!showSingleReport">
         <div *ngFor="let report of reportList">
-            <div class="mt-3 col-11 mx-auto text-light primary-bg p-3 pb-0 rounded shadow-sm">
+            <div class="mt-3 col-11 mx-auto text-light primary-bg p-3 pb-0 rounded shadow-sm" (click)="selectReport(report)">
                 <div class="col-12 pb-0 d-flex">
                     <p class="report-name col-4">{{ report.name }}</p>
                     <p class="report-room col-4 text-center">sala, cozinha e banheiro</p>
@@ -14,5 +14,7 @@
             </div>
         </div>
     </div>
-
+    <div class="mt-5" *ngIf="showSingleReport">
+        <app-report-display [report]="selectedReport" (goBack)="showSingleReport = false"></app-report-display>
+    </div>
 </div>
