@@ -8,4 +8,7 @@ export class ImageFile {
     color_2?: string = '';
     dt_register?: Date = new Date();
     used?: boolean = false;
+
+    profile_name?: string = '';
+    room_name?: string = '';
 }

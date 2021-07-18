@@ -11,8 +11,8 @@ export class Report {
     r_description: string = '';
     r_key: string = '';
     r1_pic1: string = '';
-    r1_pic2: number = 0;
-    r2_pic1: number = 0;
+    r1_pic2: string = '';
+    r2_pic1: string = '';
     r2_pic2: number = 0;
     r3_pic1: number = 0;
     r3_pic2: number = 0;

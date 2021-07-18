@@ -1,29 +1,31 @@
 <!-- SVG DO HEADER -->
 
 <div class="user-form">
-    <div class="col-10 mb-4 mx-auto mt-4 text-center">
+    <div class="col-10 mb-4 mx-auto mt-4">
         <h1 class="text-primary-1"><b>choices 21</b></h1>
     </div>
     <br>
     <div class="col-md-9 mt-5 col-sm-12 mx-auto">
         <!-- COMPANY SELECTION -->
         <div class="mb-4 mt">
-            <div class="row col-md-9 col-sm-12 mx-auto mt-1 text-center">
-                <h6 class="text-center text-dark mt-1 col-md-5 col-sm-6 fw-bold">empresa:</h6>
-                <app-select-tag class="col-md-6 col-sm-12" [objList]="companies" (selected)="changeSelectedCompany($event)">
+            <div class="row col-md-9 col-sm-12 mx-auto mt-1">
+                <h6 class="text-cnter text-dark mt-1 col-md-5 col-sm-6 fw-bold">empresa:</h6>
+                <app-select-tag class="col-md-6 col-sm-12" [objList]="companies"
+                    (selected)="changeSelectedCompany($event)">
                 </app-select-tag>
             </div>
         </div>
-    
+
         <!-- WORKER SELECTION -->
         <div *ngIf="selectedCo.id" class="mb-4">
-            <div class="row col-md-9 col-sm-12 mx-auto mt-1 text-center">
-                <h6 class="text-center mt-1 col-md-5 col-sm-6 fw-bold">arquiteta(o):</h6>
-                <app-select-tag class="col-md-6 col-sm-12" [objList]="workers" (selected)="changeSelectedWorker($event)">
+            <div class="row col-md-9 col-sm-12 mx-auto mt-1">
+                <h6 class="mt-1 col-md-5 col-sm-6 fw-bold">arquiteta(o):</h6>
+                <app-select-tag class="col-md-6 col-sm-12" [objList]="workers"
+                    (selected)="changeSelectedWorker($event)">
                 </app-select-tag>
             </div>
         </div>
-    
+
         <!-- OPTIONS SECTION -->
         <div *ngIf="selectedWorker.id" class="mb-4">
             <div class="text-center">
@@ -31,29 +33,44 @@
             </div>
             <app-option-buttons [optionsList]="rooms" (selected)="handleSelectedRooms($event)"></app-option-buttons>
         </div>
-    
+
         <!-- INPUT USER EMAIL AND NAME -->
         <div *ngIf="selectedRooms.length > 0">
-            <div class="row col-md-9 col-sm-12 mb-3 mx-auto mt-1 text-center">
-                <h6 class="text-center mt-1 col-md-5 col-sm-6 fw-bold">seu nome:</h6>
-                <div class="col-md-6 col-sm-12">
-                    <input type="text" class="form-control  input-st text-center shadow-primary border-st ml-5" [(ngModel)]="nameCustomer" placeholder=""> 
+            <div>
+                <div class="row col-md-9 col-sm-12 mb-3 mx-auto mt-1">
+                    <h6 class="mt-1 col-md-5 col-sm-6 fw-bold">seu nome:</h6>
+                    <div class="col-md-6 col-sm-12">
+                        <input type="text" class="form-control  input-st text-center shadow-primary border-st ml-5"
+                            [(ngModel)]="nameCustomer" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row col-md-9 col-sm-12 mb-3 mx-auto mt-1">
+                    <h6 class="mt-1 col-md-5 col-sm-6 fw-bold">seu email:</h6>
+                    <div class="col-md-6 col-sm-12">
+                        <!-- criar máscara para email -->
+                        <input type="text" class="form-control  input-st text-center shadow-primary border-st ml-5"
+                            [(ngModel)]="emailCustomer" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row col-md-9 col-sm-12 mb-3 mx-auto mt-1">
+                    <h6 class="mt-1 col-md-5 col-sm-6 fw-bold">seu nascimento:</h6>
+                    <div class="col-md-6 col-sm-12">
+                        <input type="date"
+                            class="form-control input-st text-center shadow-primary border-st ml-5"
+                            [(ngModel)]="dtBirthCustomer">
+                    </div>
                 </div>
             </div>
         </div>
-        <div *ngIf="selectedRooms.length > 0">
-            <div class="row col-md-9 col-sm-12 mb-3 mx-auto mt-1 text-center">
-                <h6 class="text-center mt-1 col-md-5 col-sm-6 fw-bold">seu email:</h6>
-                <div class="col-md-6 col-sm-12">
-                    <!-- criar máscara para email -->
-                    <input type="text" class="form-control  input-st text-center shadow-primary border-st ml-5" [(ngModel)]="emailCustomer" placeholder=""> 
-                </div>
-            </div>
-        </div>
-    
+
         <!-- TODO: disable button até que tudo esteja selecionado, futuramente só mostrar ele quando tiver selecionado tudo  -->
         <div *ngIf="emailCustomer !== '' && nameCustomer !== ''" class="text-center">
-            <button class="btn col-3 mx-auto btn-option  m-2 shadow-primary border-st primary-bg rounded text-light p-3" (click)="beginButton()" >iniciar</button>
+            <button class="btn col-3 mx-auto btn-option m-2 shadow-primary border-st primary-bg rounded text-light p-3"
+                (click)="beginButton()">iniciar</button>
         </div>
-    </div>  
+    </div>
 </div>

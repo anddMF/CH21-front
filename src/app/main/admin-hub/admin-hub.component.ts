@@ -17,7 +17,7 @@ export class AdminHubComponent implements OnInit {
 
   ngOnInit(): void {
     // Apenas para teste
-    this.adminService.getReports(1, 2).subscribe(res => {
+    this.adminService.getReports(1).subscribe(res => {
       console.log('res fora: ', res)
       if (res && res.length > 0) {
         console.log(res)

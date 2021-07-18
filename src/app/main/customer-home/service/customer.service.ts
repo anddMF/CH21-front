@@ -74,6 +74,7 @@ export class CustomerService {
   }
 
   public postReport(report: Report): Observable<Report[]> {
+    console.log('POST POST', report)
     return this.http.post<Report[]>(`${environment.apiRootUrl}/api/Report`, report, this.httpOptions)
   }
 

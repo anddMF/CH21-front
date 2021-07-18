@@ -10,8 +10,8 @@ import { CustomerService } from '../customer-home/service/customer.service';
   styleUrls: ['./choices-hub.component.scss']
 })
 export class ChoicesHubComponent implements OnInit {
-  public showHome = false;
-  public showChoices = true;
+  public showHome = true;
+  public showChoices = false;
   public showEnd = false;
 
   public reportObj = new Report();
@@ -29,8 +29,8 @@ export class ChoicesHubComponent implements OnInit {
       "r_description": "testestestes",
       "r_key": "",
       "r1_pic1": '1',
-      "r1_pic2": 2,
-      "r2_pic1": 0,
+      "r1_pic2": '',
+      "r2_pic1": '',
       "r2_pic2": 0,
       "r3_pic1": 0,
       "r3_pic2": 0,
@@ -92,7 +92,7 @@ export class ChoicesHubComponent implements OnInit {
 
   public addImageToReport(): void {
     if(this.imageObj && this.imageObj.id) {
-      this.reportObj.r_key = this.reportObj.r_key + '' + this.imageObj.id + ';';
+      this.reportObj.r1_pic1 = this.reportObj.r1_pic1 === '' ? this.reportObj.r1_pic1 + '' + this.imageObj.id : this.reportObj.r1_pic1 + ',' + this.imageObj.id;
     }
   }
 
@@ -112,13 +112,24 @@ export class ChoicesHubComponent implements OnInit {
       const index = this.roomList.findIndex(obj => obj.id === filteredRooms[0].id);
       this.roomList[index].clicked = false;
     } else {
-      console.log(this.reportObj)
-      this.finishReport;
+      console.log('else else else', this.reportObj)
+
+      this.customerSvc.postReport(this.reportObj).subscribe(res => {
+        console.log('finish fora fora', res)
+        if(res) {
+          console.log(res); 
+          this.showChoices = false;
+          this.showEnd = true;
+          return;
+        } 
+      })
     }
   }
 
   public finishReport() {
+    console.log('finish report')
     this.customerSvc.postReport(this.reportObj).subscribe(res => {
+      console.log('finish fora fora')
       if(res) {
         console.log(res); 
         this.showChoices = false;

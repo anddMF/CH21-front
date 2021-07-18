@@ -28,6 +28,7 @@ export class CustomerHomeComponent implements OnInit {
   public customerObj = new Customer();
   public nameCustomer = '';
   public emailCustomer = '';
+  public dtBirthCustomer: Date = new Date();
 
   constructor(private customerSvc: CustomerService) { }
 
@@ -81,6 +82,7 @@ export class CustomerHomeComponent implements OnInit {
     this.customerObj.email = this.emailCustomer;
     this.customerObj.name = this.nameCustomer;
     this.customerObj.id_user_admin = this.selectedWorker.id;
+    this.customerObj.dt_birth = this.dtBirthCustomer;
 
     this.customerSvc.postCustomer(this.customerObj).subscribe(objList => {
       console.log(objList);
