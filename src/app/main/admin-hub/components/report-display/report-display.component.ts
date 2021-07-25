@@ -13,8 +13,12 @@ import { ImageFile } from 'src/app/main/choices-hub/components/image-gallery/mod
 export class ReportDisplayComponent implements OnInit, OnChanges {
   @Input() report: Report = new Report();
   @Output() goBack = new EventEmitter();
-  
+
   public imageList: ImageFile[] = [];
+
+  public profileList: string[] = [];
+  public roomList: string[] = [];
+  public profile: string = '';
 
   constructor(private customerSvc: CustomerService) { }
 
@@ -22,7 +26,7 @@ export class ReportDisplayComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.report && changes.report) {
+    if (this.report && changes.report) {
       this.getImages();
     };
   }
@@ -37,13 +41,33 @@ export class ReportDisplayComponent implements OnInit, OnChanges {
 
   public getImages() {
     var imagesIds = this.report.r1_pic1.split(',');
-    console.log("DISPLAY GET IMAGES", imagesIds)
-    
+
     this.customerSvc.getImagesById(imagesIds).subscribe(res => {
       if (res) {
-        console.log('resposta get images', res)
         this.imageList = res;
+
+        this.imageList.forEach(element => {
+          this.roomList.push(element.room_name);
+          this.profileList.push(element.profile_name);
+        });
+        this.profile = this.getMostOccurrences(this.profileList)
       }
     })
+  }
+
+  private getMostOccurrences(list: string[]): string {
+    var elementName = '';
+    var elementCount = 0;
+    for (let index = 0; index < list.length; index++) {
+      const element = list[index];
+      var elementList = list.filter(x => x === element);
+
+      if (elementList && elementList.length > elementCount) {
+        elementCount = elementList.length;
+        elementName = elementList[0];
+      }
+    }
+
+    return elementName;
   }
 }

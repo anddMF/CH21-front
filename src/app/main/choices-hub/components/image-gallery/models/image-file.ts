@@ -9,6 +9,6 @@ export class ImageFile {
     dt_register?: Date = new Date();
     used?: boolean = false;
 
-    profile_name?: string = '';
-    room_name?: string = '';
+    profile_name: string = '';
+    room_name: string = '';
 }

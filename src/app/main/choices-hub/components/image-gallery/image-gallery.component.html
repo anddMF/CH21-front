@@ -4,8 +4,8 @@
     </div>
 
     <div class="col-10 mx-auto">
-        <div class="grid-container d-md-inline-flex">
-            <div class="text-center d-inline" *ngFor="let item of filteredList" (click)="handleSelection(item.image.id)">
+        <div class="grid-container d-md-inline-flx">
+            <div class="text-center d-inlie" *ngFor="let item of filteredList" (click)="handleSelection(item.image.id)">
               <h5 *ngIf="showDescriptions">{{ item.image.room_name }}</h5>
               <img class="grid-item-{{item.used}} " src="{{item.image.base_image}}" alt='' >
               <h5 *ngIf="showDescriptions">{{ item.image.profile_name }}</h5>
