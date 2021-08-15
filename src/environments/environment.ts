@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiRootUrl: 'https://localhost:5001'
+  apiRootUrl: 'https://localhost:5001',
+  apiGuardRootUrl:'https://localhost:3030'
 };
 
 /*
