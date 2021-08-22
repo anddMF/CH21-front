@@ -3,10 +3,11 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthenticationService) { }
+    constructor(private authService: AuthenticationService, private router: Router) { }
 
     // Intercepta respostas HTTP para verificar se o user pode estar deslogado
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -21,11 +22,15 @@ export class ErrorInterceptor implements HttpInterceptor {
                     else {
                         console.log('obj erro: ', error)
                         errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+                        if (error.status === 401) {
+                            this.authService.logout();
+                            // location.reload(true);
+                            this.router.navigate(['login'])
+                        }
                     }
                     console.log(errorMsg);
                     return throwError(error);
                 })
             )
     }
-
 }

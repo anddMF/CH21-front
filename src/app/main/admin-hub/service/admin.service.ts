@@ -17,7 +17,7 @@ export class AdminService {
 
   // Em teste
   public getReports(idCompany: number): Observable<Report[]> {
-    return this.http.get<Report[]>(`${environment.apiRootUrl}/api/Report?id_company=${idCompany}`).pipe(
+    return this.http.get<Report[]>(`${environment.apiRootUrl}/guard/Report?id_company=${idCompany}`).pipe(
       retry(2),
       tap(_ => console.log('GET report')),
       catchError(this.handleError<any>('getReport'))

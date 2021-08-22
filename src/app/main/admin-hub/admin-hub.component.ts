@@ -1,6 +1,7 @@
 import { AdminService } from './service/admin.service';
 import { Report } from './../choices-hub/models/report';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 
 @Component({
   selector: 'app-admin-hub',
@@ -13,11 +14,13 @@ export class AdminHubComponent implements OnInit {
 
   showSingleReport = false;
 
-  constructor(private adminService: AdminService) { }
+  public currentUser = this.authService.currentUserValue;
+
+  constructor(private adminService: AdminService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    // Apenas para teste
-    this.adminService.getReports(1).subscribe(res => {
+    //Apenas para teste
+    this.adminService.getReports(this.currentUser.data.idCompany).subscribe(res => {
       console.log('res fora: ', res)
       if (res && res.length > 0) {
         console.log(res)
@@ -34,5 +37,4 @@ export class AdminHubComponent implements OnInit {
       this.showSingleReport = true;
     }
   }
-
 }

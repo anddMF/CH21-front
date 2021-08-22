@@ -12,4 +12,5 @@ export class UserData {
     password = '';
     dtBirth: Date = new Date();
     dtRegister: Date = new Date();
+    avatar = '';
 }

@@ -6,14 +6,12 @@
         <div class="mt-4 row">
             <label for="username">email:</label>
             <input type="text" [(ngModel)]="userEmail" class="form-control border-0" />
-            {{userEmail}}
         </div>
         <div class="mt-3 row">
             <label for="username">senha:</label>
             <input type="password" [(ngModel)]="userPassword" class="form-control border-0" />
-            {{userPassword}}
         </div>
-        <div *ngIf="hasError" class="text-warning col-12">
+        <div *ngIf="hasError" class="text-warning col-12 mt-2">
             {{ errorMessage }}
         </div>
         <div class="mt-4 row">
