@@ -15,6 +15,7 @@ import { ImageGalleryComponent } from './main/choices-hub/components/image-galle
 import { ReportDisplayComponent } from './main/admin-hub/components/report-display/report-display.component';
 import { AdminHubComponent } from './main/admin-hub/admin-hub.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { LoginPageComponent } from './main/admin-hub/components/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     ImageGalleryComponent,
     ReportDisplayComponent,
     AdminHubComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

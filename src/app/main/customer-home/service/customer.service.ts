@@ -82,10 +82,10 @@ export class CustomerService {
     return (error: any): Observable<T> => {
       //TODO: enviar erro para serviço de log
       console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
+      // console.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
+      // return of(result as T);
+      return of()
     }
   }
 }

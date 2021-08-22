@@ -9,8 +9,7 @@ export class JwtInterceptor implements HttpInterceptor {
     constructor(private authService: AuthenticationService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('CAIU INTERCEPTOR')
-        console.log('URL: ', req.url)
+        console.log('JWTINTERCEPTOR URL: ', req.url)
         const currentUser = this.authService.currentUserValue;
         const isLoggedIn = currentUser && currentUser.token;
         const isUrlGuard = req.url.startsWith(`${environment.apiRootUrl}/guard`);

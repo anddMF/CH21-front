@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiRootUrl: 'https://localhost:5001',
-  apiGuardRootUrl:'https://localhost:3030'
+  apiGuardRootUrl:'http://localhost:3030'
 };
 
 /*

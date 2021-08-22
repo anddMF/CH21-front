@@ -16,7 +16,7 @@ export class AuthenticationService {
     const userStorage = sessionStorage.getItem('currentUser');
     console.log('user storage', userStorage);
 
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(userStorage === null ? '' : userStorage));
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(userStorage === null ? '{}' : userStorage));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -25,8 +25,10 @@ export class AuthenticationService {
   }
 
   public login(email: string, password: string) {
+    console.log('LOGIN')
     return this.http.post<any>(`${environment.apiGuardRootUrl}/login`, { email, password })
       .pipe(map(user => {
+        console.log('resposta auth', user)
         if (user && user.token) {
           sessionStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);

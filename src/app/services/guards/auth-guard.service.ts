@@ -12,8 +12,9 @@ export class AuthGuardService implements CanActivate{
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const currentUser = this.authService.currentUserValue;
+    // console.log('GUARD user', currentUser)
 
-    if(currentUser)
+    if(currentUser && currentUser.token)
       return true
 
     this.router.navigate(['customer'], {queryParams: { returnUrl: state.url}});

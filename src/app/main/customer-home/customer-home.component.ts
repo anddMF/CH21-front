@@ -30,6 +30,9 @@ export class CustomerHomeComponent implements OnInit {
   public emailCustomer = '';
   public dtBirthCustomer: Date = new Date();
 
+  public hasError = false;
+  public errorMessage = '';
+
   constructor(private customerSvc: CustomerService) { }
 
   ngOnInit(): void {
@@ -54,9 +57,13 @@ export class CustomerHomeComponent implements OnInit {
 
   public getRooms(): void {
     this.customerSvc.getRoom().subscribe(res => {
+      this.hasError = false;
       if (res) {
         this.rooms = res;
       }
+    }, (err)=>{
+      console.log('Caiu error rooms');
+      this.showError('Falha ao trazer os comodos :/');
     });
   }
 
@@ -64,17 +71,26 @@ export class CustomerHomeComponent implements OnInit {
     if (this.selectedCo) {
       this.customerSvc.getWorker(this.selectedCo.id).subscribe(res => {
         if (res) {
+          this.hasError = false;
           this.workers = res;
         }
+      }, (err)=>{
+        console.log('Caiu error workers');
+        this.showError('Falha ao trazer os funcionários :/');
       });
     }
   }
 
   public getCompanies(): void {
     this.customerSvc.getCompany().subscribe(res => {
+      console.log('GetCompanies ', res)
       if (res) {
+        this.hasError = false;
         this.companies = res;
       }
+    }, (err)=>{
+      console.log('Caiu error companhias');
+      this.showError('Falha ao trazer as companhias :/');
     })
   }
 
@@ -98,6 +114,11 @@ export class CustomerHomeComponent implements OnInit {
         }
       }
     });
+  }
+
+  private showError(message: string): void {
+    this.hasError = true;
+    this.errorMessage = message
   }
 
 }
