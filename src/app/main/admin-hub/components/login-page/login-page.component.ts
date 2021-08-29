@@ -1,6 +1,7 @@
 import { AuthenticationService } from './../../../../services/auth/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -9,30 +10,39 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-  public userEmail = '';
-  public userPassword = '';
+  public loading = false;
+
+  public loginForm: FormGroup = this.formBuilder.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required]
+  });
 
   public hasError = false;
   public errorMessage = '';
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+
+  // conseguir mais fácil dados do form
+  get f() { return this.loginForm.controls; }
 
   public login(): void {
-    this.authService.login(this.userEmail, this.userPassword).subscribe(res => {
-      console.log('LOGIN SEM RES', res)
+    
+    if (this.loginForm.invalid)
+      return
+
+    this.loading = true;
+    this.authService.login(this.f.email.value, this.f.password.value).subscribe(res => {
       if (res) {
-        console.log('RESPONDEU: ', res);
+        this.loading = false;
         this.router.navigate(['admin'])
       }
     }, (err) => {
-      console.log('CAIU LOGIN ERR: ', err);
-      let message = 'Falha ao comunicar com o servidor, tente novamente mais tarde :/'
+      let message = 'Falha ao comunicar com o servidor, tente novamente mais tarde :/';
+      this.loading = false
       if (err.status) {
-        if(err.status === 500 ){
-          console.log('login 500 ')
+        if (err.status === 500) {
           message = 'Email ou senha incorretos'
         }
       }

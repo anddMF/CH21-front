@@ -1,22 +1,28 @@
 <div class="container">
-    <div class="col-md-8 mt-5 mx-auto shadow primary-bg text-light p-5 rounded">
-        <div class="text-center">
-            <h3>choice21.</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="col-md-8 mt-5 mx-auto shadow primary-bg text-light p-5 rounded">
+            <div class="text-center">
+                <h3>choice21.</h3>
+            </div>
+            <div class="mt-4 row">
+                <label for="username">email:</label>
+                <input type="text" formControlName="email" class="form-control border-0" />
+            </div>
+            <div class="mt-3 row">
+                <label for="username">senha:</label>
+                <input type="password" formControlName="password" class="form-control border-0" />
+            </div>
+            <div *ngIf="hasError" class="text-warning col-12 mt-2">
+                {{ errorMessage }}
+            </div>
+            <div class="mt-4 row">
+                <button [disabled]="!loginForm.valid" (click)="login()" class="btn btn-dark btn-block col-5 mx-auto border-0">
+                    <!-- <span *ngIf="!loading" class="loader ml-auto"></span> -->
+                    entrar
+                </button>
+                <button class="btn btn-dark btn-block col-5 ml-auto">cadastrar</button>
+            </div>
         </div>
-        <div class="mt-4 row">
-            <label for="username">email:</label>
-            <input type="text" [(ngModel)]="userEmail" class="form-control border-0" />
-        </div>
-        <div class="mt-3 row">
-            <label for="username">senha:</label>
-            <input type="password" [(ngModel)]="userPassword" class="form-control border-0" />
-        </div>
-        <div *ngIf="hasError" class="text-warning col-12 mt-2">
-            {{ errorMessage }}
-        </div>
-        <div class="mt-4 row">
-            <button [disabled]="!userEmail || !userPassword" (click)="login()" class="btn btn-light btn-block col-5 mx-auto border-0">entrar</button>
-            <button class="btn btn-dark btn-block col-5 ml-auto">cadastrar</button>
-        </div>
-    </div>
+
+    </form>
 </div>
