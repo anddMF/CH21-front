@@ -1,65 +1,72 @@
 <div class="container">
-    <div class="primary-bg mt-5 rounded shadow p-1 col-11 mx-auto">
-        <div class="col-12 mt-2 text-light p-3 text-center">
-            <h3>cadastro.</h3>
-        </div>
-        <div class="row2 p-2">
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
-                <label class="font-075 text-light" for="username">nome:</label>
-                <input type="text" placeholder="Digite seu nome" class=" font-075 form-control border-0" />
+    <form [formGroup]="registerForm" action="">
+        <div class="primary-bg mt-5 rounded shadow p-1 col-11 mx-auto">
+            <div class="col-12 mt-2 text-light p-3 text-center">
+                <h3>cadastro.</h3>
             </div>
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
-                <label class="font-075 text-light" for="username">email:</label>
-                <input type="text" placeholder="Digite seu email" class="font-075 form-control border-0" />
+            <div class="row2 p-2">
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
+                    <label class="font-075 text-light">nome: </label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.email.touched && f.email.invalid">inválido!</label>
+                    <input type="text" formControlName="name" placeholder="Digite seu nome" class=" font-075 form-control border-0" />
+                </div>
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
+                    <label class="font-075 text-light"> email: </label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.email.touched && f.email.invalid">inválido!</label>
+                    <input type="text" formControlName="email" placeholder="Digite seu email"
+                        class="font-075 form-control border-0" />
+                </div>
             </div>
-        </div>
-        <div class="row2 p-2">
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
-                <label class="font-075 text-light" for="username">senha:</label>
-                <input type="password" placeholder="Digite sua senha" class=" font-075 form-control border-0" />
+            <div class="row2 p-2">
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
+                    <label class="font-075 text-light" for="username">senha:</label>
+                    <input type="password" formControlName="password" placeholder="Digite sua senha" class=" font-075 form-control border-0" />
+                </div>
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
+                    <label class="font-075 text-light" for="username">senha novamente:</label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.password.touched && f.confirmPassword.touched && !isPasswordValid()">inválido!</label>
+                    <input type="password" formControlName="confirmPassword" placeholder="Repita sua senha" class="font-075 form-control border-0" />
+                </div>
             </div>
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
-                <label class="font-075 text-light" for="username">digite novamente:</label>
-                <input type="password" placeholder="Repita sua senha" class="font-075 form-control border-0" />
+            <div class="row2 p-2">
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
+                    <label class="font-075 text-light" for="username">data de nascimento:</label>
+                    <input type="text" formControlName="dateBirth" placeholder="Sua data de nascimento" onfocus="(this.type='date')"
+                        class=" form-control font-075 border-0">
+                </div>
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
+                    <!-- <input type="password" placeholder="Repita sua senha" class="font-075 form-control border-0" /> -->
+                    <label class="font-075 text-light" for="username">selecione a empresa:</label>
+                    <select class="font-075 form-control border-0 select-st" [value]="selectedId"
+                        (change)="changeSelectedCompany($event)">
+                        <option class="bg-light" disabled selected value="-1">Escolha uma opção</option>
+                        <option class="" *ngFor="let obj of selectList" value={{obj.id}}>
+                            {{ obj.name }}
+                        </option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="row2 p-2">
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
-                <label class="font-075 text-light" for="username">data de nascimento:</label>
-                <input type="text" placeholder="Sua data de nascimento" onfocus="(this.type='date')"
-                    class=" form-control font-075 border-0">
-            </div>
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
-                <!-- <input type="password" placeholder="Repita sua senha" class="font-075 form-control border-0" /> -->
-                <label class="font-075 text-light" for="username">selecione a empresa:</label>
-                <select class="font-075 form-control border-0 select-st" [value]="selectedId" (change)="changeSelectedCompany($event)">
-                    <option class="bg-light" disabled selected value="-1">Escolha uma opção</option>
-                    <option class="" *ngFor="let obj of selectList" value={{obj.id}}>
-                        {{ obj.name }}
-                    </option>
-                </select>
-            </div>
-        </div>
 
-        <div class="row2 p-2 mt-2" *ngIf="selectedId == 0">
-            <div class="col-12 text-light px-2">
-                <h6>Cadastrar uma nova empresa</h6>
+            <div class="row2 p-2 mt-2" *ngIf="selectedId == 0">
+                <div class="col-12 text-light px-2">
+                    <h6>Cadastrar uma nova empresa</h6>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
+                    <label class="font-075 text-light" for="username">razão social:</label>
+                    <input type="text" placeholder="Digite a RS de sua empresa"
+                        class=" font-075 form-control border-0" />
+                </div>
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
+                    <label class="font-075 text-light" for="username">cnpj:</label>
+                    <input type="text" mask="00.000.000/0000-99" placeholder="Digite o CNPJ de sua empresa"
+                        class="font-075 form-control border-0" />
+                </div>
             </div>
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
-                <label class="font-075 text-light" for="username">razão social:</label>
-                <input type="text" placeholder="Digite a RS de sua empresa" class=" font-075 form-control border-0" />
-            </div>
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
-                <label class="font-075 text-light" for="username">cnpj:</label>
-                <input type="text" mask="00.000.000/0000-99" [(ngModel)]="cnpja" placeholder="Digite o CNPJ de sua empresa" class="font-075 form-control border-0" />
+            <div class="row2 p-2 mt-2">
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2"></div>
+                <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4">
+                    <button class="btn text-light shadow border-0 form-control font-075 rounded col-12 btn-"
+                        style="background-color: #ffa825;">cadastrar usuário</button>
+                </div>
             </div>
         </div>
-        <div class="row2 p-2 mt-2">
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2"></div>
-            <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4">
-                <button class="btn text-light shadow border-0 form-control font-075 rounded col-12 btn-" style="background-color: #ffa825;">cadastrar usuário</button>
-            </div>
-        </div>
+    </form>
 
-    </div>
 </div>
