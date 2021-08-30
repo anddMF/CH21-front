@@ -16,6 +16,8 @@ import { ReportDisplayComponent } from './main/admin-hub/components/report-displ
 import { AdminHubComponent } from './main/admin-hub/admin-hub.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginPageComponent } from './main/admin-hub/components/login-page/login-page.component';
+import { CreateUserPageComponent } from './main/admin-hub/components/login-page/components/create-user-page/create-user-page.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { LoginPageComponent } from './main/admin-hub/components/login-page/login
     ReportDisplayComponent,
     AdminHubComponent,
     NavbarComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    CreateUserPageComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { LoginPageComponent } from './main/admin-hub/components/login-page/login
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

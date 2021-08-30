@@ -13,8 +13,8 @@
             <h6 class="fw-bold">{{report.email}}</h6>
         </div>
     </div>
-    <div class="col-12 mt-5 pl-3">
-        <h4>Feito no dia {{report.dt_register | date:'dd/MM/yyyy'}} e o perfil de imagem mais escolhido foi o <b class="fw-bold text-orange">{{profile}}!</b></h4>
+    <div class="col-11 mx-auto mt-5 pl-3">
+        <h5>Feito no dia {{report.dt_register | date:'dd/MM/yyyy'}} e o perfil de imagem mais escolhido foi o <b class="fw-bold text-orange">{{profile}}!</b></h5>
     </div>
     <div class="col-12 mt-5">
         <app-image-gallery [images]="imageList" [showDescriptions]="true" ></app-image-gallery>

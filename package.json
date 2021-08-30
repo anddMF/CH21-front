@@ -23,6 +23,7 @@
     "bootstrap": "^5.0.0-beta1",
     "express": "^4.17.1",
     "moment": "^2.29.1",
+    "ngx-mask": "^12.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

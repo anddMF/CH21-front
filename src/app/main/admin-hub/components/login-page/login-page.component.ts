@@ -50,6 +50,10 @@ export class LoginPageComponent implements OnInit {
     })
   }
 
+  public goToRegisterPage(): void {
+    this.router.navigate(['register'])
+  }
+
   private showError(message: string): void {
     this.hasError = true;
     this.errorMessage = message
