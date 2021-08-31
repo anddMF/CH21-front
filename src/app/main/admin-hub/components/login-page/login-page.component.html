@@ -16,7 +16,7 @@
                 {{ errorMessage }}
             </div>
             <div class="mt-4 row">
-                <button [disabled]="!loginForm.valid" (click)="login()" class="btn btn-dark btn-block col-5 mx-auto border-0">
+                <button [disabled]="loginForm.invalid" (click)="login()" class="btn btn-dark btn-block col-5 mx-auto border-0">
                     <!-- <span *ngIf="!loading" class="loader ml-auto"></span> -->
                     entrar
                 </button>
