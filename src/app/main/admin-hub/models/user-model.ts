@@ -13,4 +13,7 @@ export class UserData {
     dtBirth: Date = new Date();
     dtRegister?: Date = new Date();
     avatar? = '';
+
+    companyName? = '';
+    companyCnpj? = '';
 }

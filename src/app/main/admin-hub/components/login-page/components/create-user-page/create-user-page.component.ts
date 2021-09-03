@@ -51,8 +51,11 @@ export class CreateUserPageComponent implements OnInit {
       email: this.f.email.value,
       password: this.f.password.value,
       idCompany: this.selectedId,
-      dtBirth: this.f.dateBirth.value
+      dtBirth: this.f.dateBirth.value,
+      companyName: this.f.coRazaoSocial.value,
+      companyCnpj: this.f.coCnpj.value
     }
+    console.log('USER', newUser)
 
     this.userSvc.postUser(newUser).subscribe(res => {
 

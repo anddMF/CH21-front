@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="registerForm" action="">
+    <form [formGroup]="registerForm" (ngSubmit)="createUser()">
         <div class="primary-bg mt-5 rounded shadow p-1 col-11 mx-auto">
             <div class="col-12 mt-2 text-light p-3 text-center">
                 <h3>cadastro.</h3>
@@ -68,7 +68,7 @@
             <div class="row2 p-2 mt-2">
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2"></div>
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4">
-                    <button [disabled]="checkDisableButton()" class="btn text-light shadow border-0 form-control font-075 rounded col-12 btn-"
+                    <button [disabled]="checkDisableButton()" (click)="createUser()" class="btn text-light shadow border-0 form-control font-075 rounded col-12 btn-"
                         style="background-color: #ffa825;">cadastrar usuário</button>
                 </div>
             </div>
