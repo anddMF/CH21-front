@@ -40,7 +40,7 @@
                     <select class="font-075 form-control border-0 select-st" [value]="selectedId"
                         (change)="changeSelectedCompany($event)">
                         <option class="bg-light" disabled selected value="-1">Escolha uma opção</option>
-                        <option class="" *ngFor="let obj of selectList" value={{obj.id}}>
+                        <option class="" *ngFor="let obj of companies" value={{obj.id}}>
                             {{ obj.name }}
                         </option>
                     </select>

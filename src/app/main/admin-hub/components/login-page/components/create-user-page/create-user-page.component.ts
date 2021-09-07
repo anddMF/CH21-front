@@ -2,6 +2,8 @@ import { UserData } from './../../../../models/user-model';
 import { UserService } from './service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomerService } from 'src/app/main/customer-home/service/customer.service';
+import { Company } from 'src/app/main/customer-home/models/company';
 
 @Component({
   selector: 'app-create-user-page',
@@ -25,6 +27,8 @@ export class CreateUserPageComponent implements OnInit {
 
   public formHasError = false;
 
+  public companies: Company[] = [];
+
   public selectList = [
     { id: 0, name: 'Cadastrar uma nova' },
     { id: 1, name: 'Teste A' },
@@ -33,9 +37,10 @@ export class CreateUserPageComponent implements OnInit {
 
   public selectedId = -1;
 
-  constructor(private formBuilder: FormBuilder, private userSvc: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userSvc: UserService, private customerSvc: CustomerService) { }
 
   ngOnInit(): void {
+    this.getCompanies();
   }
 
   // conseguir mais fácil dados do form
@@ -67,6 +72,22 @@ export class CreateUserPageComponent implements OnInit {
         }
       }
       this.showError(message)
+    })
+  }
+
+  public getCompanies(): void {
+    this.customerSvc.getCompany().subscribe(res => {
+      console.log('GetCompanies ', res)
+      if (res) {
+        this.companies = [];
+        this.hasError = false;
+        this.companies = res;
+        this.companies.unshift({id: 0, name: 'Cadastrar uma nova', cnpj: ''});
+        console.log('COMPANIES', this.companies)
+      }
+    }, (err)=>{
+      console.log('Caiu error companhias');
+      this.showError('Falha ao trazer as companhias :/');
     })
   }
 
