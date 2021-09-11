@@ -1,38 +1,49 @@
 <div class="container">
-    <form [formGroup]="registerForm" (ngSubmit)="createUser()">
+    <!-- (ngSubmit)="createUser()" -->
+    <form [formGroup]="registerForm">
         <div class="primary-bg mt-5 rounded shadow p-1 col-11 mx-auto">
             <div class="col-12 mt-2 text-light p-3 text-center">
                 <h3>cadastro.</h3>
             </div>
-            FORM: {{registerForm.invalid }} CO DATA:{{ !isCompanyDataValid() }} id: {{selectedId}}
-            <br>
-            razao: {{ f.coRazaoSocial.value }} // cnpj: {{ f.coCnpj.value }} // mix: {{ registerForm.invalid || isCompanyDataValid()}}
             <div class="row2 p-2">
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
-                    <label class="font-075 text-light">nome: </label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.name.touched && f.name.invalid">inválido!</label>
-                    <input type="text" formControlName="name" placeholder="Digite seu nome" class=" font-075 form-control border-0" />
+                    <label class="font-075 text-light">nome: </label><label
+                        class="float-end font-075 text-danger fw-bold"
+                        *ngIf="f.name.touched && f.name.invalid">inválido!</label>
+                    <input type="text" formControlName="name" placeholder="Digite seu nome"
+                        class=" font-075 form-control border-0" />
                 </div>
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
-                    <label class="font-075 text-light"> email: </label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.email.touched && f.email.invalid">inválido!</label>
+                    <label class="font-075 text-light"> email: </label><label
+                        class="float-end font-075 text-danger fw-bold"
+                        *ngIf="f.email.touched && f.email.invalid">inválido!</label>
                     <input type="text" formControlName="email" placeholder="Digite seu email"
                         class="font-075 form-control border-0" />
                 </div>
             </div>
             <div class="row2 p-2">
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
-                    <label class="font-075 text-light" for="username">senha:</label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.password.touched && f.password.invalid">inválido!</label>
-                    <input type="password" formControlName="password" placeholder="Digite sua senha" class=" font-075 form-control border-0" />
+                    <label class="font-075 text-light" for="username">senha:</label><label
+                        class="float-end font-075 text-danger fw-bold"
+                        *ngIf="f.password.touched && f.password.invalid">inválido!</label>
+                    <input type="password" formControlName="password" placeholder="Digite sua senha"
+                        class=" font-075 form-control border-0" />
                 </div>
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
-                    <label class="font-075 text-light" for="username">senha novamente:</label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.password.touched && f.confirmPassword.touched && !isPasswordValid()">inválido!</label>
-                    <input type="password" formControlName="confirmPassword" placeholder="Repita sua senha" class="font-075 form-control border-0" />
+                    <label class="font-075 text-light" for="username">senha novamente:</label><label
+                        class="float-end font-075 text-danger fw-bold"
+                        *ngIf="f.password.touched && f.confirmPassword.touched && !isPasswordValid()">inválido!</label>
+                    <input type="password" formControlName="confirmPassword" placeholder="Repita sua senha"
+                        class="font-075 form-control border-0" />
                 </div>
             </div>
             <div class="row2 p-2">
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
-                    <label class="font-075 text-light" for="username">data de nascimento:</label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.dateBirth.touched && f.dateBirth.invalid">inválido!</label>
-                    <input type="text" formControlName="dateBirth" placeholder="Sua data de nascimento" onfocus="(this.type='date')"
-                        class=" form-control font-075 border-0">
+                    <label class="font-075 text-light" for="username">data de nascimento:</label><label
+                        class="float-end font-075 text-danger fw-bold"
+                        *ngIf="f.dateBirth.touched && f.dateBirth.invalid">inválido!</label>
+                    <input type="text" formControlName="dateBirth" placeholder="Sua data de nascimento"
+                        onfocus="(this.type='date')" class=" form-control font-075 border-0">
                 </div>
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
                     <!-- <input type="password" placeholder="Repita sua senha" class="font-075 form-control border-0" /> -->
@@ -48,18 +59,22 @@
             </div>
 
             <div class="row2 p-2 mt-2" *ngIf="selectedId == 0">
-                <div class="col-12 text-light px-2">
+                <!-- <div class="col-12 text-light px-2">
                     <h6>Cadastrar uma nova empresa</h6>
-                </div>
+                </div> -->
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2 bg-ble">
-                    <label class="font-075 text-light" for="username">razão social:</label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.coRazaoSocial.touched && f.coRazaoSocial.value === ''">inválido!</label>
+                    <label class="font-075 text-light" for="username">razão social:</label><label
+                        class="float-end font-075 text-danger fw-bold"
+                        *ngIf="f.coRazaoSocial.touched && f.coRazaoSocial.value === ''">inválido!</label>
                     <input type="text" formControlName="coRazaoSocial" placeholder="Digite a RS de sua empresa"
                         class=" font-075 form-control border-0" />
                 </div>
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4  bg-">
-                    <label class="font-075 text-light" for="username">cnpj:</label><label class="float-end font-075 text-danger fw-bold" *ngIf="f.coCnpj.touched && f.coCnpj.value === ''">inválido!</label>
-                    <input type="text" formControlName="coCnpj" mask="00.000.000/0000-99" placeholder="Digite o CNPJ de sua empresa"
-                        class="font-075 form-control border-0" />
+                    <label class="font-075 text-light" for="username">cnpj:</label><label
+                        class="float-end font-075 text-danger fw-bold"
+                        *ngIf="f.coCnpj.touched && f.coCnpj.value === ''">inválido!</label>
+                    <input type="text" formControlName="coCnpj" mask="00.000.000/0000-99"
+                        placeholder="Digite o CNPJ de sua empresa" class="font-075 form-control border-0" />
                 </div>
             </div>
             <div *ngIf="hasError" class="text-danger col-12 mt-2">
@@ -68,7 +83,8 @@
             <div class="row2 p-2 mt-2">
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 mr-2"></div>
                 <div class="col-md-6 col-sm-12 col-xl-6 p-2 px-md-4">
-                    <button [disabled]="checkDisableButton()" (click)="createUser()" class="btn text-light shadow border-0 form-control font-075 rounded col-12 btn-"
+                    <button [disabled]="checkDisableButton()" (click)="createUser()"
+                        class="btn text-light shadow border-0 form-control font-075 rounded col-12 btn-"
                         style="background-color: #ffa825;">cadastrar usuário</button>
                 </div>
             </div>

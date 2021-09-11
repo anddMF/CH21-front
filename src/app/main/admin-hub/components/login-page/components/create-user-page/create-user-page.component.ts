@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/main/customer-home/service/customer.service';
 import { Company } from 'src/app/main/customer-home/models/company';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user-page',
@@ -37,7 +38,7 @@ export class CreateUserPageComponent implements OnInit {
 
   public selectedId = -1;
 
-  constructor(private formBuilder: FormBuilder, private userSvc: UserService, private customerSvc: CustomerService) { }
+  constructor(private formBuilder: FormBuilder, private userSvc: UserService, private customerSvc: CustomerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCompanies();
@@ -63,7 +64,13 @@ export class CreateUserPageComponent implements OnInit {
     console.log('USER', newUser)
 
     this.userSvc.postUser(newUser).subscribe(res => {
-
+      console.log('Resposta create-user: ', res);
+      if (res) {
+        this.router.navigate(['login'])
+      } else {
+        const message = 'Falha ao comunicar com o servidor, tente novamente mais tarde :/';
+        this.showError(message);
+      }
     }, (err) => {
       let message = 'Falha ao comunicar com o servidor, tente novamente mais tarde :/';
       if (err.status) {
@@ -82,17 +89,17 @@ export class CreateUserPageComponent implements OnInit {
         this.companies = [];
         this.hasError = false;
         this.companies = res;
-        this.companies.unshift({id: 0, name: 'Cadastrar uma nova', cnpj: ''});
+        // this.companies.unshift({id: 0, name: 'Cadastrar uma nova', cnpj: ''});
         console.log('COMPANIES', this.companies)
       }
-    }, (err)=>{
+    }, (err) => {
       console.log('Caiu error companhias');
       this.showError('Falha ao trazer as companhias :/');
     })
   }
 
   public checkDisableButton(): Boolean {
-    if(this.selectedId == -1)
+    if (this.selectedId == -1)
       return true;
 
     if (this.selectedId == 0)
