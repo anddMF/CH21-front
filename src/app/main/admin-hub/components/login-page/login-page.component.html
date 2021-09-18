@@ -1,5 +1,6 @@
 <div class="container">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <!-- (ngSubmit)="login()" -->
+    <form [formGroup]="loginForm">
         <div class="col-md-8 mt-5 mx-auto shadow primary-bg text-light p-5 rounded">
             <div class="text-center">
                 <h3>choice21.</h3>
@@ -23,6 +24,5 @@
                 <button class="btn btn-dark btn-block col-5 ml-auto" (click)="goToRegisterPage()" >cadastrar</button>
             </div>
         </div>
-
     </form>
 </div>

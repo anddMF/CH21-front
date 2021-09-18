@@ -2,6 +2,7 @@ import { AdminService } from './service/admin.service';
 import { Report } from './../choices-hub/models/report';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth/authentication.service';
+import { PageEnum } from 'src/app/shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-admin-hub',
@@ -11,6 +12,8 @@ import { AuthenticationService } from 'src/app/services/auth/authentication.serv
 export class AdminHubComponent implements OnInit {
   reportList: Report[] = [];
   selectedReport: Report = new Report();
+
+  stage = PageEnum['Choices'];
 
   showSingleReport = false;
 
@@ -36,5 +39,9 @@ export class AdminHubComponent implements OnInit {
       this.selectedReport = selected;
       this.showSingleReport = true;
     }
+  }
+
+  public handlePageOutput(selected: PageEnum) {
+    this.stage = selected;
   }
 }

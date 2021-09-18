@@ -18,6 +18,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginPageComponent } from './main/admin-hub/components/login-page/login-page.component';
 import { CreateUserPageComponent } from './main/admin-hub/components/login-page/components/create-user-page/create-user-page.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { ImagesPageComponent } from './main/admin-hub/components/images-page/images-page.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgxMaskModule } from 'ngx-mask';
     AdminHubComponent,
     NavbarComponent,
     LoginPageComponent,
-    CreateUserPageComponent
+    CreateUserPageComponent,
+    ImagesPageComponent
   ],
   imports: [
     BrowserModule,
