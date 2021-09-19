@@ -2,10 +2,9 @@
     <div class="mt-3">
         <app-navbar [page]="stage" (pageSelected)="handlePageOutput($event)"></app-navbar>
     </div>
-    {{ stage }}
 
-    <div>
-        <div class="mt-5" *ngIf="!showSingleReport">
+    <div *ngIf="stage===1" class="mt-5">
+        <div *ngIf="!showSingleReport">
             <div *ngFor="let report of reportList">
                 <div class="mt-3 col-11 mx-auto text-light primary-bg p-3 pb-0 rounded shadow-sm"
                     (click)="selectReport(report)">
@@ -18,9 +17,13 @@
                 </div>
             </div>
         </div>
-        <div class="mt-5" *ngIf="showSingleReport">
+        <div *ngIf="showSingleReport">
             <app-report-display [report]="selectedReport" (goBack)="showSingleReport = false"></app-report-display>
         </div>
+    </div>
+
+    <div *ngIf="stage===2" class="mt-5">
+        <app-images-page></app-images-page>
     </div>
 
 </div>

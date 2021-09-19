@@ -13,7 +13,7 @@ export class AdminHubComponent implements OnInit {
   reportList: Report[] = [];
   selectedReport: Report = new Report();
 
-  stage = PageEnum['Choices'];
+  stage = PageEnum['Reports'];
 
   showSingleReport = false;
 
@@ -24,18 +24,15 @@ export class AdminHubComponent implements OnInit {
   ngOnInit(): void {
     //Apenas para teste
     this.adminService.getReports(this.currentUser.data.idCompany).subscribe(res => {
-      console.log('res fora: ', res)
       if (res && res.length > 0) {
-        console.log(res)
+        console.log('reports', res)
         this.reportList = res;
       }
     })
   }
 
   public selectReport(selected: Report) {
-    console.log(selected)
     if (selected) {
-      console.log('entrou selected')
       this.selectedReport = selected;
       this.showSingleReport = true;
     }

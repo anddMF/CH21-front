@@ -13,6 +13,7 @@ export class ImagesPageComponent implements OnInit {
   constructor(private customerSvc: CustomerService) { }
 
   ngOnInit(): void {
+    this.getImages();
   }
 
   public getImages() {
