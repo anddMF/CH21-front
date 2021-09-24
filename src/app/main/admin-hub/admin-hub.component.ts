@@ -13,9 +13,11 @@ export class AdminHubComponent implements OnInit {
   reportList: Report[] = [];
   selectedReport: Report = new Report();
 
-  stage = PageEnum['Reports'];
+  stage = PageEnum['Images'];
 
   showSingleReport = false;
+
+  showModalImages = false;
 
   public currentUser = this.authService.currentUserValue;
 
