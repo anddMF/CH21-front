@@ -27,10 +27,12 @@
 
 
         <!-- <div class="col-md-8"> -->
-            <div *ngIf="showModalImages" class="col-md-8 mx-auto bg-primary p-3 modal-ch shadow-lg">
-                <div class="">
-                    test testestestes
-                </div>
+            <!-- col-md-8 mx-auto bg-primary p-3 modal-ch shadow-lg -->
+            <div *ngIf="showModalImages" class="">
+                <app-modal-generic>
+                    testes testest testestest
+                    <button (click)="showModalImages = false" >cancelar</button>
+                </app-modal-generic>
             </div>
         <!-- </div> -->
         <button class="btn btn-primary" (click)="showModalImages = true" >show</button>

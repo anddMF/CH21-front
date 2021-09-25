@@ -19,6 +19,7 @@ import { LoginPageComponent } from './main/admin-hub/components/login-page/login
 import { CreateUserPageComponent } from './main/admin-hub/components/login-page/components/create-user-page/create-user-page.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { ImagesPageComponent } from './main/admin-hub/components/images-page/images-page.component';
+import { ModalGenericComponent } from './shared/modal-generic/modal-generic.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ImagesPageComponent } from './main/admin-hub/components/images-page/ima
     NavbarComponent,
     LoginPageComponent,
     CreateUserPageComponent,
-    ImagesPageComponent
+    ImagesPageComponent,
+    ModalGenericComponent
   ],
   imports: [
     BrowserModule,
