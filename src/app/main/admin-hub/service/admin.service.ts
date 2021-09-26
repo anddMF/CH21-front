@@ -20,7 +20,7 @@ export class AdminService {
   // Em teste
   public getReports(idCompany: number): Observable<Report[]> {
     return this.http.get<Report[]>(`${environment.apiRootUrl}/guard/Report?id_company=${idCompany}`).pipe(
-      retry(2),
+      retry(1),
       tap(_ => console.log('GET report')),
       catchError(this.handleError<any>('getReport'))
     );
@@ -29,15 +29,15 @@ export class AdminService {
   // Se repete na customer service e aqui
   public getRoom(): Observable<RoomType[]> {
     return this.http.get<RoomType[]>(`${environment.apiRootUrl}/api/Customer/room`).pipe(
-      retry(2),
+      retry(1),
       tap(_ => console.log('GET room')),
       catchError(this.handleError<any>('getRoom'))
     )
   }
 
   public getArcProfile(): Observable<ArcProfile[]> {
-    return this.http.get<ArcProfile[]>(`${environment.apiRootUrl}/image/arcprofile`).pipe(
-      retry(2),
+    return this.http.get<ArcProfile[]>(`${environment.apiRootUrl}/api/Image/arcprofile`).pipe(
+      retry(1),
       tap(_=> console.log('GET arcprofile')),
       catchError(this.handleError<any>('getArcProfile'))
     )
