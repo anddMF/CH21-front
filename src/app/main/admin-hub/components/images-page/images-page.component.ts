@@ -9,6 +9,7 @@ import { CustomerService } from 'src/app/main/customer-home/service/customer.ser
 })
 export class ImagesPageComponent implements OnInit {
   public imageList: ImageFile[] = [];
+  public showModalImages = false;
 
   constructor(private customerSvc: CustomerService) { }
 
@@ -22,6 +23,11 @@ export class ImagesPageComponent implements OnInit {
         this.imageList = res;
       }
     })
+  }
+
+  public postImages() {
+    // objeto de entrada: pega id company do user logado, precisa de um get para select de rooms,
+    // get para os arc profiles também
   }
 
 }
