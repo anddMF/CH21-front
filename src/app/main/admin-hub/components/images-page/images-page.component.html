@@ -8,12 +8,12 @@
     <app-modal-generic>
         <div class="mt-3 row">
             <label for="urlInput">url da imagem:</label>
-            <input type="text" class="form-control">
+            <input type="text" [(ngModel)]="imageUrl" class="form-control">
         </div>
 
         <div class="mt-3 row">
             <label for="urlInput">título da imagem:</label>
-            <input type="text" class="form-control">
+            <input type="text" [(ngModel)]="imageTitle" class="form-control">
         </div>
 
         <div class="mt-3 row">
@@ -31,7 +31,7 @@
         <div class="mt-4 row">
             <button class="btn btn-danger col-md-5" (click)="handleModal(false)">cancelar</button>
             <div class="col-md-2"></div>
-            <button class="btn btn-success col-md-5">salvar</button>
+            <button class="btn btn-success col-md-5" (click)="postImage()" >salvar</button>
         </div>
     </app-modal-generic>
 </div>

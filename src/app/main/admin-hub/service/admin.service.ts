@@ -1,3 +1,4 @@
+import { ImageFile } from 'src/app/main/choices-hub/components/image-gallery/models/image-file';
 import { ArcProfile } from './../models/arc-profile';
 import { Report } from './../../choices-hub/models/report';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -6,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RoomType } from '../../customer-home/models/room-type';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,8 @@ export class AdminService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
+  public currentUser = this.authService.currentUserValue;
 
   // Em teste
   public getReports(idCompany: number): Observable<Report[]> {
@@ -41,6 +44,12 @@ export class AdminService {
       tap(_=> console.log('GET arcprofile')),
       catchError(this.handleError<any>('getArcProfile'))
     )
+  }
+
+  public postImage(model: ImageFile) {
+    model.id_company = this.currentUser.data.idCompany;
+
+    return this.http.post<any[]>(`${environment.apiRootUrl}/api/Image`, model, this.httpOptions)
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -4,6 +4,7 @@ export class ImageFile {
     id_room_type?: number = 0;
     id_company?: number = 0;
     base_image: string = '';
+    name: string = '';
     color_1?: string = '';
     color_2?: string = '';
     dt_register?: Date = new Date();

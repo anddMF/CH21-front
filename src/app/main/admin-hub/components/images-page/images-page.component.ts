@@ -18,6 +18,7 @@ export class ImagesPageComponent implements OnInit {
   public selectedRoom: RoomType = new RoomType();
   public selectedProfile: ArcProfile = new ArcProfile();
   public imageUrl: string = '';
+  public imageTitle: string = '';
 
   public showModalImages = false;
 
@@ -30,6 +31,7 @@ export class ImagesPageComponent implements OnInit {
   public handleModal(action: boolean) {
     this.showModalImages = action;
 
+    // faz o get duplo somente quando abrem o modal e ainda não foi feito
     if(action && this.roomList.length === 0) {
       this.getRooms();
       this.getArcProfiles();
@@ -72,9 +74,19 @@ export class ImagesPageComponent implements OnInit {
     })
   }
 
-  public postImages() {
-    // objeto de entrada: pega id company do user logado, precisa de um get para select de rooms,
-    // get para os arc profiles também
+  public postImage() {
+    var model = new ImageFile();
+    model.base_image = this.imageUrl;
+    model.name = this.imageTitle;
+    model.id_arc_profile = this.selectedProfile.id;
+    model.id_room_type = this.selectedRoom.id;
+    
+    this.adminSvc.postImage(model).subscribe(res => {
+      if(res){
+        console.log('res postImage', res);
+        this.handleModal(false);
+      }
+    })
   }
 
 }
