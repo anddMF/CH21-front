@@ -12,6 +12,7 @@ import { CustomerService } from 'src/app/main/customer-home/service/customer.ser
 })
 export class ImagesPageComponent implements OnInit {
   public imageList: ImageFile[] = [];
+  public filteredImageList: ImageFile[] = [];
   public roomList: RoomType[] = [];
   public profileList: ArcProfile[] = [];
 
@@ -21,11 +22,13 @@ export class ImagesPageComponent implements OnInit {
   public imageTitle: string = '';
 
   public showModalImages = false;
+  public noFilter: RoomType = {id: 0, name: '', clicked: false}
 
   constructor(private customerSvc: CustomerService, private adminSvc: AdminService) { }
 
   ngOnInit(): void {
     this.getImages();
+    this.getRooms();
   }
 
   public handleModal(action: boolean) {
@@ -33,9 +36,18 @@ export class ImagesPageComponent implements OnInit {
 
     // faz o get duplo somente quando abrem o modal e ainda não foi feito
     if(action && this.roomList.length === 0) {
-      this.getRooms();
       this.getArcProfiles();
     }
+  }
+
+  public changeListFilter(tag: RoomType) {
+    // retira filtro
+    if (tag.id === 0) {
+      this.filteredImageList = this.imageList;
+      return;
+    }
+
+    this.filteredImageList = this.imageList.filter(obj => obj.id_room_type == tag.id)
   }
 
   public changeSelectedRoom(room: any){
@@ -50,6 +62,10 @@ export class ImagesPageComponent implements OnInit {
     this.customerSvc.getImages().subscribe(res => {
       if (res) {
         this.imageList = res;
+        this.imageList.sort((a,b) => (a.dt_register > b.dt_register) ? -1 : 1);
+        this.filteredImageList = this.imageList;
+        
+        // this.imageList.sort((a,b) => (a.id_room_type > b.id_room_type) ? -1 : 1)
       }
     })
   }
@@ -85,6 +101,7 @@ export class ImagesPageComponent implements OnInit {
       if(res){
         console.log('res postImage', res);
         this.handleModal(false);
+        this.getImages();
       }
     })
   }
